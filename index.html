@@ -1,11 +1,17 @@
 <html>
     <head>
         <title>My Website</title>
+        <meta charset="utf-8" />
+        <title>AngularJS User Registration and Login Example & Tutorial</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+        <link href="//cdn.rawgit.com/cornflourblue/angular-registration-login-example/master/app-content/app.css" rel="stylesheet" />
     </head>
     <body ng-app="myApp">
         <!-- load angular -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
         <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
+        <script>document.write('<base href="' + document.location + '" />');</script>
+        <link rel="stylesheet" href="style.css" />
 
         <!-- load app -->
         <script src="app.js"></script>
@@ -14,7 +20,9 @@
         <script src="pages/about/aboutController.js"></script>
         <script src="pages/poi/poiController.js"></script>
         <script src="pages/http/httpController.js"></script>
-
+        <script src="pages/login/loginController.js"></script>
+        <script src="pages/register/registerController.js"></script>
+        
         <!-- the website -->
         <h1>My Website</h1>
 
@@ -28,6 +36,9 @@
             </li>
             <li>
                 <a href="#!poi">POI</a>
+            </li>
+            <li>
+                <a href="#!register">Rgister</a>
             </li>
             <li>
                 <a href="#!httpRequest">POI</a>

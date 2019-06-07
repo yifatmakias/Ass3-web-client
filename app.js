@@ -5,14 +5,19 @@ app.config(function($routeProvider)  {
     $routeProvider
         // homepage
         .when('/', {
-            // this is a template
-            template: '<h1>This is the default route</h1>'
+            templateUrl: 'pages/login/login.html',
+            controller : 'loginController as loginCtrl'
         })
         // about
         .when('/about', {
             // this is a template url
             templateUrl: 'pages/about/about.html',
             controller : 'aboutController as abtCtrl'
+        })
+        .when('/register', {
+            // this is a template url
+            templateUrl: 'pages/register/register.html',
+            controller : 'registerController as registerCtrl'
         })
         // poi
         .when('/poi', {
