@@ -1,5 +1,4 @@
 let app = angular.module('myApp', ["ngRoute"]);
-
 // config routes
 app.config(function($routeProvider)  {
     $routeProvider
@@ -14,20 +13,22 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/about/about.html',
             controller : 'aboutController as abtCtrl'
         })
+        .when('/restorePassword', {
+            // this is a template url
+            templateUrl: 'pages/restorePassword/restorePassword.html',
+            controller : 'restorePassController as passCtrl'
+        })
         .when('/register', {
             // this is a template url
             templateUrl: 'pages/register/register.html',
             controller : 'registerController as registerCtrl'
         })
-        // poi
-        .when('/poi', {
-            templateUrl: 'pages/poi/poi.html',
-            controller : 'poiController as poiCtrl'
-        })
-        .when('/httpRequest', {
-            templateUrl: 'pages/http/request.html',
-            controller : 'httpController as httpCtrl'
-        })
         // other
         .otherwise({ redirectTo: '/' });
+});
+
+angular.module("myApp")
+.controller("app.js", function ($scope, $window) {
+    $window.localStorage.setItem('username', 'guest');
+    $scope.hello_user = "Hello " + $window.localStorage.getItem('username');
 });

@@ -1,0 +1,9 @@
+img {
+    height: 100px;
+    width: 200px;
+}
+
+span.poi_name {
+    margin-right: 140px;
+    font-size: 150%;
+}
