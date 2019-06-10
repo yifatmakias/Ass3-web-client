@@ -7,3 +7,12 @@ span.poi_name {
     margin-right: 140px;
     font-size: 150%;
 }
+
+span.poi_category {
+    font-size: 150%;
+}
+
+span.poi_category_value {
+    margin-right: 40px;
+    font-size: 150%;
+}

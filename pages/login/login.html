@@ -1,6 +1,6 @@
 <div class="col-md-6 col-md-offset-3" ng-controller="loginController as loginCtrl">
         <h2>Login</h2>
-        <form name="form" ng-submit="submit()" role="form">
+        <form name="form" ng-submit="submit($event)" role="form">
             <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" class="form-control" ng-model="username" required ng-minlength="3" ng-maxlength="8" ng-pattern="/^[a-zA-Z]*$/"/>

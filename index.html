@@ -22,25 +22,41 @@
         <script src="pages/login/loginController.js"></script>
         <script src="pages/register/registerController.js"></script>
         <script src="pages/restorePassword/restorePassController.js"></script>
+        <script src="pages/poiLogin/poiLoginController.js"></script>
 
         <!-- the website -->
         <h1>My Website</h1>
 
         <!-- menu -->
-        <ul>
-            <li>
-                <a href="#!">Home</a>
-            </li>
-            <li>
-                <a href="#!about">About</a>
-            </li>
-            <li>
-                <a href="#!register">Rgister</a>
-            </li>
-        </ul>
+        <nav ng-controller="app.js" ng-show="role=='guest'"> 
+            <ul>
+                <li>
+                    <a href="#!">Home</a>
+                </li>
+                <li>
+                    <a href="#!about">About</a>
+                </li>
+                <li>
+                    <a href="#!register">Rgister</a>
+                </li>
+            </ul>
+        </nav>
+        <nav ng-controller="app.js" ng-show="role=='loggedIn'">
+            <ul>
+                <li>
+                    <a href="#!about">About</a>
+                </li>
+                <li>
+                    <a href="#!poiLogin">POI For You</a>
+                </li>
+                <li>
+                    <a href="#!logout" ng-click="logout()">Log Out</a>
+                </li>
+            </ul>
+        </nav>
 
         <!-- This section changes as the hashbang changes -->
-        <span ng-controller="app.js">{{ hello_user }} </span>
+        <span ng-controller="app.js" >{{ hello_user }} </span>
         <div ng-view></div>
     </body>
 </html>
