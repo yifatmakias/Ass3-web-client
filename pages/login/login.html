@@ -27,11 +27,11 @@
 
     </div>
     <div class="col-md-8 col-md-offset-3">
-        <h2>Recomended POI:</h2>
-        <span ng-repeat="POIName in randomPOINames">
-            <span class="poi_name" ng-bind="POIName"></span>
+        <h2>Popular POI:</h2>
+        <span ng-repeat="POI in randomPOI">
+            <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
         </span><br>
-        <span ng-repeat="POIImg in randomPOImges">
-            <img ng-src="{{ POIImg }}">
+        <span ng-repeat="POI in randomPOI">
+            <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
         </span>
     </div>

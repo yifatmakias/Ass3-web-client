@@ -1,4 +1,4 @@
-let app = angular.module('myApp', ["ngRoute"]);
+let app = angular.module('myApp', ["ngRoute", 'ui.bootstrap']);
 
 // config routes
 app.config(function($routeProvider)  {
@@ -32,6 +32,11 @@ app.config(function($routeProvider)  {
             // this is a template url
             templateUrl: 'pages/poiLogin/poiLogin.html',
             controller : 'poiLoginController as poiLoginCtrl'
+        })
+        .when('/poi', {
+            // this is a template url
+            templateUrl: 'pages/poi/poi.html',
+            controller : 'poiController as poiCtrl'
         })
         // other
         .otherwise({ redirectTo: '/' });
@@ -72,6 +77,6 @@ angular.module('myApp')
             $rootScope.$broadcast('change-property-event');
             sharedProperties.setRole('guest');
             $rootScope.$broadcast('change-role-event');
-            $window.localStorage.clear();
+            $window.sessionStorage.clear();
         }
     });

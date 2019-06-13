@@ -12,6 +12,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
         <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
         <script>document.write('<base href="' + document.location + '" />');</script>
+        <script data-require="ui-bootstrap@*" data-semver="2.5.0" src="https://cdn.rawgit.com/angular-ui/bootstrap/gh-pages/ui-bootstrap-tpls-2.5.0.js"></script>
         <!--link rel="stylesheet" href="style.css" /-->
 
         <!-- load app -->
@@ -23,6 +24,7 @@
         <script src="pages/register/registerController.js"></script>
         <script src="pages/restorePassword/restorePassController.js"></script>
         <script src="pages/poiLogin/poiLoginController.js"></script>
+        <script src="pages/poi/poiController.js"></script>
 
         <!-- the website -->
         <h1>My Website</h1>
@@ -37,6 +39,9 @@
                     <a href="#!about">About</a>
                 </li>
                 <li>
+                    <a href="#!poi">POI</a>
+                </li>
+                <li>
                     <a href="#!register">Rgister</a>
                 </li>
             </ul>
@@ -48,6 +53,9 @@
                 </li>
                 <li>
                     <a href="#!poiLogin">POI For You</a>
+                </li>
+                <li>
+                    <a href="#!poi">POI</a>
                 </li>
                 <li>
                     <a href="#!logout" ng-click="logout()">Log Out</a>

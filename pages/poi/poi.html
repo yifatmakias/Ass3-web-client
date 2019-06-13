@@ -1,0 +1,41 @@
+
+<div class="col-md-8 col-md-offset-3" ng-controller="poiController as poiCtrl">
+    <h2>POI</h2>
+    <h3>POI By Category:</h3>
+    <div>
+    <h4>Attraction</h4>
+        <span ng-repeat="POI in attractionPOI">
+            <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
+        </span><br>
+        <span ng-repeat="POI in attractionPOI">
+            <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
+        </span>
+    </div>  
+    <div>
+        <h4>Museum</h4>
+        <span ng-repeat="POI in museumPOI">
+            <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
+        </span><br>
+        <span ng-repeat="POI in museumPOI">
+            <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
+        </span>
+    </div>
+    <div>
+        <h4>Resturant</h4>
+        <span ng-repeat="POI in resturantPOI">
+            <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
+        </span><br>
+        <span ng-repeat="POI in resturantPOI">
+            <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
+        </span>
+    </div>
+    <div>
+        <h4>Shopping</h4>
+        <span ng-repeat="POI in shoppingPOI">
+            <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
+        </span><br>
+        <span ng-repeat="POI in shoppingPOI">
+            <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
+        </span>
+    </div>
+</div>

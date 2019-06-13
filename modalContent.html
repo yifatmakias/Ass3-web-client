@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h3>POI Details</h3>
+</div>
+<div class="modal-body">
+    <span class="titles">Name:</span> <span ng-bind="name"></span><br>
+    <span class="titles">Category: </span><span ng-bind="category"></span><br>
+    <span class="titles">Description:</span> <span ng-bind="desc"></span><br>
+    <span class="titles">Rank:</span> <span ng-bind="rank"></span>%<br>
+    <span class="titles">Number of viewers:</span> <span ng-bind="num_of_viewers"></span><br>
+</div>
+<div class="modal-header">
+        <h3>POI Last Reviews</h3>
+    </div>
+    <div ng-repeat="review in reviews" class="modal-body">
+        <span class="titles">Reviewr Name:</span> <span> {{ review.name }} </span><br>
+        <span class="titles">Date: </span><span> {{ review.date }}</span><br>
+        <span class="titles">Rank:</span> <span> {{ review.rank }}</span><br>
+        <span class="titles">Description:</span> <span> {{ review.desc }}</span><br>
+    </div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+</div>

@@ -2,21 +2,21 @@
 <div class="col-md-8 col-md-offset-3" ng-controller="poiLoginController as poiLoginCtrl">
     <h2>POI For You</h2>
     <h3>Recomended POI:</h3>
-    <span ng-repeat="POIName in recomendedPOINames">
-        <span class="poi_name" ng-bind="POIName"></span>
+    <span ng-repeat="POI in recomendedPOI">
+        <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
     </span><br>
-    <span ng-repeat="POICategory in recomendedPOICategory">
-        <span class="poi_category">Category: </span>
-        <span class="poi_category_value" ng-bind="POICategory"> </span>
+    <span ng-repeat="POI in recomendedPOI">
+        <span class="poi_name" ng-click="open(POI.id)"> {{ POI.category }} </span>
     </span><br>
-    <span ng-repeat="POIImg in recomendedPOImges">
-        <img ng-src="{{ POIImg }}">
+    <span ng-repeat="POI in recomendedPOI">
+        <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
     </span>
     <h3>Favorite POI:</h3>
-    <span ng-repeat="POIName in favoritePOINames">
-        <span class="poi_name" ng-bind="POIName"></span>
+    <span ng-bind=no_saved_message></span>
+    <span ng-repeat="POI in savedPOI">
+        <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
     </span><br>
-    <span ng-repeat="POIImg in favoritePOImges">
-        <img ng-src="{{ POIImg }}">
+    <span ng-repeat="POI in savedPOI">
+        <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
     </span>
 </div>

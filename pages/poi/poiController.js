@@ -1,42 +1,66 @@
 // login controller
 angular.module("myApp")
-.controller("poiLoginController", function ($scope, $http, $window, $uibModal) {
-   var arrPOIRecomended = new Array();
-   var arrPOISaved = new Array();
+.controller("poiController", function ($scope, $http, $window, $uibModal) {
+   var arrPOIAttraction = new Array();
+   var arrPOIMuseum = new Array();
+   var arrPOIResturant = new Array();
+   var arrPOIShopping = new Array();
    $http({
        method: 'GET',
-       url: 'http://localhost:3000/private/getRecomendedPOI',
-       headers: {
-          'x-auth-token': $window.sessionStorage.getItem('token')
-       }
+       url: 'http://localhost:3000/getPOIByCategory/attraction',
     }).then(function (response){
+       console.log(response.data);
        var POIJsons = response.data
        for (var i=0; i<Object.keys(POIJsons).length; i++) {
-         arrPOIRecomended.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic, 'category':POIJsons[i].poi_category});
+         arrPOIAttraction.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic});
        }
-       $scope.recomendedPOI = arrPOIRecomended;
+       $scope.attractionPOI = arrPOIAttraction;
     },function (error){
        alert(error);
     });
 
     $http({
       method: 'GET',
-      url: 'http://localhost:3000/private/getSavedPOI',
-      headers: {
-         'x-auth-token': $window.sessionStorage.getItem('token')
-      }
+      url: 'http://localhost:3000/getPOIByCategory/museum',
    }).then(function (response){
+      console.log(response.data);
       var POIJsons = response.data
-      if (Object.keys(POIJsons).length === 0) {
-         $scope.no_saved_message = "No saved POI to show"
-      }
       for (var i=0; i<Object.keys(POIJsons).length; i++) {
-         arrPOISaved.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic});
+         arrPOIMuseum.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic});
       }
-      $scope.savedPOI = arrPOISaved;
+      $scope.museumPOI = arrPOIMuseum;
    },function (error){
       alert(error);
    });
+
+   $http({
+      method: 'GET',
+      url: 'http://localhost:3000/getPOIByCategory/resturant',
+   }).then(function (response){
+      console.log(response.data);
+      var POIJsons = response.data
+      for (var i=0; i<Object.keys(POIJsons).length; i++) {
+         arrPOIResturant.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic});
+      }
+      $scope.resturantPOI = arrPOIResturant;
+   },function (error){
+      alert(error);
+   });
+
+   $http({
+      method: 'GET',
+      url: 'http://localhost:3000/getPOIByCategory/shopping',
+   }).then(function (response){
+      console.log(response.data);
+      var POIJsons = response.data
+      for (var i=0; i<Object.keys(POIJsons).length; i++) {
+         arrPOIShopping.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic});
+      }
+      $scope.shoppingPOI = arrPOIShopping;
+   },function (error){
+      alert(error);
+   });
+
    $scope.open = function(param) {
       var modalInstance =  $uibModal.open({
         templateUrl: 'modalContent.html',
