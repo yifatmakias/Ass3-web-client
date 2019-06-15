@@ -46,6 +46,7 @@ angular.module('myApp')
     .service('sharedProperties', function () {
         var property = 'guest';
         var role = 'guest';
+        var search = 'false';
         return {
             getProperty: function () {
                 return property;
@@ -58,6 +59,12 @@ angular.module('myApp')
             },
             setRole: function(value) {
                 role = value;
+            },
+            getSearch: function () {
+                return search;
+            },
+            setSearch: function(value) {
+                search = value;
             }
         };
     });

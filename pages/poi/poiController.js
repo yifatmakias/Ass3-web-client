@@ -1,15 +1,19 @@
 // login controller
 angular.module("myApp")
-.controller("poiController", function ($scope, $http, $window, $uibModal) {
+.controller("poiController", function ($scope, $http, $uibModal, sharedProperties, $rootScope) {
    var arrPOIAttraction = new Array();
    var arrPOIMuseum = new Array();
    var arrPOIResturant = new Array();
    var arrPOIShopping = new Array();
+   var arrSearchPOI = new Array();
+   $scope.search = sharedProperties.getSearch();
+   $scope.$on('change-search-event', function() {
+      $scope.search  = sharedProperties.getSearch();
+  }); 
    $http({
        method: 'GET',
        url: 'http://localhost:3000/getPOIByCategory/attraction',
     }).then(function (response){
-       console.log(response.data);
        var POIJsons = response.data
        for (var i=0; i<Object.keys(POIJsons).length; i++) {
          arrPOIAttraction.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic});
@@ -23,7 +27,6 @@ angular.module("myApp")
       method: 'GET',
       url: 'http://localhost:3000/getPOIByCategory/museum',
    }).then(function (response){
-      console.log(response.data);
       var POIJsons = response.data
       for (var i=0; i<Object.keys(POIJsons).length; i++) {
          arrPOIMuseum.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic});
@@ -37,7 +40,6 @@ angular.module("myApp")
       method: 'GET',
       url: 'http://localhost:3000/getPOIByCategory/resturant',
    }).then(function (response){
-      console.log(response.data);
       var POIJsons = response.data
       for (var i=0; i<Object.keys(POIJsons).length; i++) {
          arrPOIResturant.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic});
@@ -51,7 +53,6 @@ angular.module("myApp")
       method: 'GET',
       url: 'http://localhost:3000/getPOIByCategory/shopping',
    }).then(function (response){
-      console.log(response.data);
       var POIJsons = response.data
       for (var i=0; i<Object.keys(POIJsons).length; i++) {
          arrPOIShopping.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic});
@@ -60,6 +61,40 @@ angular.module("myApp")
    },function (error){
       alert(error);
    });
+
+   $scope.detectEmpty = function() {
+      if ($scope.search_input.trim().length === 0) {
+         sharedProperties.setSearch('false');
+         $rootScope.$broadcast('change-search-event');
+         arrSearchPOI = new Array();
+      }
+   }
+
+   $scope.submit = function (event) {
+      $http({
+         method: 'GET',
+         url: 'http://localhost:3000/getPOIByName/'+ $scope.search_input,
+      }).then(function (response){
+         var POIJsons = response.data;
+         if (Object.keys(POIJsons).length == 0) {
+            alert("No POI Named " + $scope.search_input);
+            sharedProperties.setSearch('false');
+            $rootScope.$broadcast('change-search-event');
+            arrSearchPOI = new Array();
+         }
+         else {
+            sharedProperties.setSearch('true');
+            $rootScope.$broadcast('change-search-event');
+            for (var i=0; i<Object.keys(POIJsons).length; i++) {
+               arrSearchPOI.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic});
+            }
+            $scope.searchPOI = arrSearchPOI;
+         }
+         event.preventDefault();
+      },function (error){
+         alert(error);
+      });
+     }
 
    $scope.open = function(param) {
       var modalInstance =  $uibModal.open({
