@@ -46,7 +46,7 @@ angular.module('myApp')
     .service('sharedProperties', function () {
         var property = 'guest';
         var role = 'guest';
-        var search = 'false';
+        var poi_page = 'poi by category';
         return {
             getProperty: function () {
                 return property;
@@ -60,11 +60,11 @@ angular.module('myApp')
             setRole: function(value) {
                 role = value;
             },
-            getSearch: function () {
-                return search;
+            getPoiPage: function () {
+                return poi_page;
             },
-            setSearch: function(value) {
-                search = value;
+            setPoiPage: function(value) {
+                poi_page = value;
             }
         };
     });

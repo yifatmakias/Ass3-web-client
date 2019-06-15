@@ -6,9 +6,9 @@ angular.module("myApp")
    var arrPOIResturant = new Array();
    var arrPOIShopping = new Array();
    var arrSearchPOI = new Array();
-   $scope.search = sharedProperties.getSearch();
-   $scope.$on('change-search-event', function() {
-      $scope.search  = sharedProperties.getSearch();
+   $scope.poi_page = sharedProperties.getPoiPage();
+   $scope.$on('change-poipage-event', function() {
+      $scope.poi_page  = sharedProperties.getPoiPage();
   }); 
    $http({
        method: 'GET',
@@ -64,8 +64,8 @@ angular.module("myApp")
 
    $scope.detectEmpty = function() {
       if ($scope.search_input.trim().length === 0) {
-         sharedProperties.setSearch('false');
-         $rootScope.$broadcast('change-search-event');
+         sharedProperties.setPoiPage('poi by category');
+         $rootScope.$broadcast('change-poipage-event');
          arrSearchPOI = new Array();
       }
    }
@@ -78,13 +78,13 @@ angular.module("myApp")
          var POIJsons = response.data;
          if (Object.keys(POIJsons).length == 0) {
             alert("No POI Named " + $scope.search_input);
-            sharedProperties.setSearch('false');
-            $rootScope.$broadcast('change-search-event');
+            sharedProperties.setPoiPage('poi by category');
+            $rootScope.$broadcast('change-poipage-event');
             arrSearchPOI = new Array();
          }
          else {
-            sharedProperties.setSearch('true');
-            $rootScope.$broadcast('change-search-event');
+            sharedProperties.setPoiPage('search');
+            $rootScope.$broadcast('change-poipage-event');
             for (var i=0; i<Object.keys(POIJsons).length; i++) {
                arrSearchPOI.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic});
             }

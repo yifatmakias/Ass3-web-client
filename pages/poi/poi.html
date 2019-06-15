@@ -3,7 +3,7 @@
         <input ng-model="search_input" type="text" placeholder="Search POI.." name="search" ng-change="detectEmpty()">
         <button type="submit"><i class="fa fa-search"></i></button>
     </form>
-    <div ng-show="search=='true'">
+    <div ng-show="poi_page=='search'">
         <span ng-repeat="POI in searchPOI">
             <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
         </span><br>
@@ -12,7 +12,7 @@
         </span>
     </div> 
 </div>
-<div class="col-md-8 col-md-offset-3" ng-controller="poiController as poiCtrl" ng-show="search=='false'">
+<div class="col-md-8 col-md-offset-3" ng-controller="poiController as poiCtrl" ng-show="poi_page=='poi by category'">
     <h2>POI</h2>
     <h3>POI By Category:</h3>
     <div>
