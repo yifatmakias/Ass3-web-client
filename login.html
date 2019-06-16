@@ -1,0 +1,37 @@
+<div class="col-md-6 col-md-offset-3" ng-controller="loginController as loginCtrl">
+        <h2>Login</h2>
+        <form name="form" ng-submit="submit($event)" role="form">
+            <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" class="form-control" ng-model="username" required ng-minlength="3" ng-maxlength="8" ng-pattern="/^[a-zA-Z]*$/"/>
+                <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+                <span ng-show="form.username.$dirty && form.username.$error.minlength" class="help-block">Minimum length is 3.</span>
+                <span ng-show="form.username.$dirty && form.username.$error.maxlength" class="help-block">Maximum length is 8.</span>
+                <span ng-show="form.username.$dirty && form.username.$error.pattern" class="help-block">Only letters</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" ng-model="password" required required ng-minlength="5" ng-maxlength="10" ng-pattern="/^[a-zA-Z0-9]*$/"/>
+                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+                <span ng-show="form.password.$dirty && form.password.$error.minlength" class="help-block">Minimum length is 5.</span>
+                <span ng-show="form.password.$dirty && form.password.$error.maxlength" class="help-block">Maximum length is 10.</span>
+                <span ng-show="form.password.$dirty && form.password.$error.pattern" class="help-block">Only letters and numbers. </span>
+            </div>
+            <div class="form-actions">
+                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Login</button>
+                <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                <a href="#!/register" class="btn btn-link">Register</a>
+                <a href="#!/restorePassword" class="btn btn-link">Forgot your password</a>
+            </div>
+        </form>
+
+    </div>
+    <div class="col-md-8 col-md-offset-3">
+        <h2>Popular POI:</h2>
+        <span ng-repeat="POI in randomPOI">
+            <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
+        </span><br>
+        <span ng-repeat="POI in randomPOI">
+            <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
+        </span>
+    </div>

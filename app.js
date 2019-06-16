@@ -38,6 +38,11 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/poi/poi.html',
             controller : 'poiController as poiCtrl'
         })
+        .when('/favoritepoi', {
+            // this is a template url
+            templateUrl: 'pages/favoritepoi/favoritePoi.html',
+            controller : 'favoritepoiController as favoritepoiCtrl'
+        })
         // other
         .otherwise({ redirectTo: '/' });
 });
@@ -46,7 +51,9 @@ angular.module('myApp')
     .service('sharedProperties', function () {
         var property = 'guest';
         var role = 'guest';
-        var poi_page = 'poi by category';
+        var poi_page = 'poi by categories';
+        var favorite_poi_page = 'favorite poi';
+        var arrFavoritePOI = new Array();
         return {
             getProperty: function () {
                 return property;
@@ -65,7 +72,26 @@ angular.module('myApp')
             },
             setPoiPage: function(value) {
                 poi_page = value;
+            },
+            getFavoriteArr: function () {
+                return arrFavoritePOI;
+            },
+            addFavorite: function(value) {
+                arrFavoritePOI.push(value);
+            },
+            removeFavorite: function(index) {
+                arrFavoritePOI.splice(index,1);
+            },
+            getFavoriteArrSize: function() {
+                return Object.keys(arrFavoritePOI).length;
+            },
+            getFavoritePoiPage: function () {
+                return favorite_poi_page;
+            },
+            setFavoritePoiPage: function(value) {
+                favorite_poi_page = value;
             }
+            
         };
     });
 

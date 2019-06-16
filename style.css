@@ -1,3 +1,4 @@
+
 img {
     height: 100px;
     width: 200px;
@@ -59,4 +60,9 @@ span.poi_category_value {
     content: "";
     clear: both;
     display: table;
+  }
+
+  .favorite_icon {
+    height: 8%;
+    width: 4%;
   }

@@ -10,13 +10,16 @@
 </div>
 <div class="modal-header">
         <h3>POI Last Reviews</h3>
-    </div>
-    <div ng-repeat="review in reviews" class="modal-body">
-        <span class="titles">Reviewr Name:</span> <span> {{ review.name }} </span><br>
-        <span class="titles">Date: </span><span> {{ review.date }}</span><br>
-        <span class="titles">Rank:</span> <span> {{ review.rank }}</span><br>
-        <span class="titles">Description:</span> <span> {{ review.desc }}</span><br>
-    </div>
+</div>
+<div ng-repeat="review in reviews" class="modal-body">
+    <span class="titles">Reviewr Name:</span> <span> {{ review.name }} </span><br>
+    <span class="titles">Date: </span><span> {{ review.date }}</span><br>
+    <span class="titles">Rank:</span> <span> {{ review.rank }}</span><br>
+    <span class="titles">Description:</span> <span> {{ review.desc }}</span><br>
+</div>
+<label ng-show="role=='loggedIn'">Favorite
+    <input type="checkbox" ng-show="role=='loggedIn'" ng-model="POI.favorite" ng-change="change(POI)" style="margin-right: 110px"/>
+</label>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="ok()">OK</button>
 </div>
