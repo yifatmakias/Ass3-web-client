@@ -2,16 +2,16 @@
     <form>
         <div class="form-actions">
             <input ng-model="search_input" type="text" placeholder="Search POI.." name="search" ng-change="detectEmpty()">
-            <button type="button" ng-click="submit()"><i class="fa fa-search" ></i></button>
-            <select name="category" id="category" ng-model="category" ng-change="filter()">
-                <option value="nofilter">-- No Filter --</option>
+            <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-search fa-fw"></i> Search</button>            
+            <select class="browser-default custom-select" name="category" id="category" ng-model="category" ng-change="filter()">
+                <option value="">-- No Filter --</option>
                 <option value="shopping">Shopping</option>
                 <option value="museum">Museum</option>
                 <option value="resturant">Resturant</option>
                 <option value="attraction">Attraction</option>
             </select>
-            <button type="button" ng-click="sortByRating()" class="btn btn-primary"><i>Sort by ranking</i></button>
-            <button type="button" ng-click="saveFavoritePOI()" class="btn btn-primary"><i>Save favorite POI</i></button>
+            <button type="button" ng-click="sortByRating()" class="btn btn-primary btn-sm">Sort by ranking</button>
+            <button type="button" ng-show="role=='loggedIn'" ng-click="saveFavoritePOI()" class="btn btn-primary btn-sm"><i>Save favorite POI</i></button>
             <a href="#!/favoritepoi" ng-show="role=='loggedIn'"><img class="favorite_icon" src="pages/poi/favorite.png"></a>
             <span ng-show="role=='loggedIn'" ng-model="favoriteListSize">({{ favoriteListSize }})</span>
         </div>
