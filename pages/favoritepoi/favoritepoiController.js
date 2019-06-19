@@ -5,6 +5,7 @@ angular.module("myApp")
    $scope.$on('change-role-event', function() {    
       $scope.role = sharedProperties.getRole();
   });
+   var arrFavoritePOIId = new Array();
    var arrFavoritePOI = new Array();
    $scope.favorite_poi_page = sharedProperties.getFavoritePoiPage();
    $scope.$on('change-favoritepoipage-event', function() {
@@ -12,6 +13,7 @@ angular.module("myApp")
   });
   $scope.$on('remove-poi-event', function() {
    arrFavoritePOI = new Array();
+   arrFavoritePOIId = new Array();
    $http({
       method: 'GET',
       url: 'http://localhost:3000/private/getSavedPOI',
@@ -21,7 +23,8 @@ angular.module("myApp")
    }).then(function (response){
       var POIJsons = response.data
       for (var i=0; i<Object.keys(POIJsons).length; i++) {
-        arrFavoritePOI.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic, 'rank': POIJsons[i].poi_rank, 'favorite': false, 'category': POIJsons[i].poi_category});
+        arrFavoritePOI.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic, 'rank': POIJsons[i].poi_rank, 'favorite': false, 'category': POIJsons[i].poi_category, 'order_index': POIJsons[i].order_index});
+        arrFavoritePOIId.splice(POIJsons[i].order_index-1, 0, POIJsons[i].poi_id);
       }
       $scope.favoritePOI = arrFavoritePOI;
    },function (error){
@@ -37,8 +40,9 @@ angular.module("myApp")
     }).then(function (response){
        var POIJsons = response.data
        for (var i=0; i<Object.keys(POIJsons).length; i++) {
-         arrFavoritePOI.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic, 'rank': POIJsons[i].poi_rank, 'favorite': false, 'category': POIJsons[i].poi_category});
-       }
+         arrFavoritePOI.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic, 'rank': POIJsons[i].poi_rank, 'favorite': false, 'category': POIJsons[i].poi_category, 'order_index': POIJsons[i].order_index});
+         arrFavoritePOIId.splice(POIJsons[i].order_index-1, 0, POIJsons[i].poi_id); 
+      }
        $scope.favoritePOI = arrFavoritePOI;
     },function (error){
        alert(error);
@@ -60,6 +64,36 @@ angular.module("myApp")
           }
           $scope.POI_by_category = arrPOIByCategory;
         }
+     }
+
+     $scope.up = function(order_index) {
+        var arr_index = order_index - 1;
+        var arr_length = Object.keys(arrFavoritePOIId).length;
+        var id_to_move = arrFavoritePOIId.splice(arr_index,1);
+        if (arr_index === 0) {
+           arrFavoritePOIId.splice(arr_length-1, 0, id_to_move[0]);
+        }
+        else {
+         arrFavoritePOIId.splice(arr_index-1, 0, id_to_move[0]);
+        }
+        favorite_json = {'poi_list': arrFavoritePOIId};
+        var req = {
+           method: 'POST',
+           url: 'http://localhost:3000/private/saveFavoriteList',
+           headers: {
+              'x-auth-token': $window.sessionStorage.getItem('token')
+           },
+           data: favorite_json
+          }
+        $http(req)
+        .then(function (response){
+           console.log(response.data)
+           if (response.data === 'insert successfully') {
+            $rootScope.$broadcast('remove-poi-event');
+           }
+        },function (error){
+           alert(error);
+        });
      }
 
      $scope.removePoi = function(param){
@@ -162,7 +196,6 @@ angular.module("myApp")
         var index = favoriteArray.indexOf(POI.poi_id);
         sharedProperties.removeFavorite(index);
       }
-      console.log(favoriteArray);
    };
  });
 
@@ -184,7 +217,6 @@ angular.module("myApp")
         }
       $http(req)
       .then(function (response){
-         console.log(response.data)
          if (response.data === 'insert successfully') {
             alert("You have successfully added a review");
          }

@@ -201,6 +201,7 @@ angular.module("myApp")
          sharedProperties.removeFavorite(index);
        }
        $rootScope.$broadcast('change-favoritelist-event');
+       console.log(sharedProperties.getFavoriteArr());
     };
 
     $scope.addReview = function(param) {

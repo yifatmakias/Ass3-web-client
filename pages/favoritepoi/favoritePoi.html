@@ -39,15 +39,12 @@
 <div class="col-md-8 col-md-offset-3" ng-controller="favoritepoiController as favoritepoiCtrl" ng-show="favorite_poi_page=='favorite poi'">
     <h2>Favorite POI</h2>
     <div>
-        <span ng-repeat="POI in favoritePOI">
-            <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
-        </span><br>
-        <span ng-repeat="POI in favoritePOI">
+        <span ng-repeat="POI in favoritePOI | orderBy:'order_index'">
+            <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span><br>
             <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
-        </span><br>
-        <span ng-repeat="POI in favoritePOI">
+            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up" ng-click="up(POI.order_index)"></span></button><br>
             <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>Add review</i></button>
-            <button type="button" ng-show="role=='loggedIn'" ng-click="removePoi(POI.id)" class="btn btn-primary" style="margin-right: 22px"><i>Remove</i></button>
+            <button type="button" ng-show="role=='loggedIn'" ng-click="removePoi(POI.id)" class="btn btn-primary"><i>Remove</i></button><br>
         </span><br>
     </div>  
 </div>
