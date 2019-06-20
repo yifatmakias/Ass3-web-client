@@ -89,7 +89,14 @@ angular.module("myApp")
         .then(function (response){
            console.log(response.data)
            if (response.data === 'insert successfully') {
-            $rootScope.$broadcast('remove-poi-event');
+            //$rootScope.$broadcast('remove-poi-event');
+            for (var i=0; i<Object.keys(arrFavoritePOI).length;i++){
+               for (var j=0; j<Object.keys(arrFavoritePOIId).length;j++){
+                  if (arrFavoritePOI[i].id === arrFavoritePOIId[j]) {
+                     arrFavoritePOI[i].order_index = j+1;
+                  }
+               }
+            }
            }
         },function (error){
            alert(error);
