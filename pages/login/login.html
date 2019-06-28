@@ -1,4 +1,4 @@
-<div class="col-md-6 col-md-offset-3" ng-controller="loginController as loginCtrl">
+<div class="col-md-6 col-md-offset-2" ng-controller="loginController as loginCtrl">
         <h2>Login</h2>
         <form name="form" ng-submit="submit($event)" role="form">
             <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
@@ -24,14 +24,15 @@
                 <a href="#!/restorePassword" class="btn btn-link">Forgot your password</a>
             </div>
         </form>
-
+    <h2>Popular POI:</h2><br>
     </div>
-    <div class="col-md-8 col-md-offset-3">
-        <h2>Popular POI:</h2>
-        <span ng-repeat="POI in randomPOI">
-            <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
-        </span><br>
-        <span ng-repeat="POI in randomPOI">
-            <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
-        </span>
+    <div class="col-md-10 col-md-offset-2">
+        <div class="row">
+            <div class="col-sm-4" class="card" ng-repeat="POI in randomPOI" style="width: 22%;">
+                <img class="card-img-top" ng-src="{{ POI.pic }}" ng-click="open(POI.id)" style="width:100%">
+                <div class="card-body" style="text-align: center;">
+                    <p class="card-title">{{ POI.name }}</p>
+                </div>
+            </div>
+        </div>
     </div>

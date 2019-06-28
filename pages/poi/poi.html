@@ -1,4 +1,4 @@
-<div class="col-md-12 col-md-offset-3" ng-controller="poiController as poiCtrl">
+<div class="col-md-10 col-md-offset-1 row-md-offset-3"  ng-controller="poiController as poiCtrl">
     <form>
         <div class="form-actions">
             <input ng-model="search_input" type="text" placeholder="Search POI.." name="search" ng-change="detectEmpty()">
@@ -7,7 +7,7 @@
                 <option value="">-- No Filter --</option>
                 <option value="shopping">Shopping</option>
                 <option value="museum">Museum</option>
-                <option value="resturant">Resturant</option>
+                <option value="resturant">Restaurant</option>
                 <option value="attraction">Attraction</option>
             </select>
             <button type="button" ng-click="sortByRating()" class="btn btn-primary btn-sm">Sort by ranking</button>
@@ -17,31 +17,31 @@
         </div>
     </form>
     <div ng-show="poi_page=='search'">
+        <div class="card" ng-repeat="POI in searchPOI" style="width: 22%;">
+            <img class="card-img-top" ng-src="{{ POI.pic }}" ng-click="open(POI.id)" style="width:100%">
+            <div class="card-body" style="text-align: center;">
+                <p class="card-title">{{ POI.name }}</p>
+            </div>
+        </div>
         <span ng-repeat="POI in searchPOI">
-            <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
-        </span><br>
-        <span ng-repeat="POI in searchPOI">
-            <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
-        </span><br>
-        <span ng-repeat="POI in searchPOI">
-            <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>Add review</i></button>
+            <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>review</i></button>
             <label ng-show="role=='loggedIn'">Favorite
                 <input type="checkbox" ng-show="role=='loggedIn'" ng-model="POI.favorite" ng-change="change(POI)" style="margin-right: 110px"/>
             </label>
         </span>
     </div>
-    <div ng-show="poi_page=='poi by category'">
+    <div class="row" ng-show="poi_page=='poi by category'">
         <h2>{{ category }}</h2>
+        <div class="col-sm-4" class="card" ng-repeat="POI in POI_by_category" style="width: 20%;">
+            <img class="card-img-top" ng-src="{{ POI.pic }}" ng-click="open(POI.id)" style="width:100%">
+            <div class="card-body" style="text-align: center;">
+                <p class="card-title">{{ POI.name }}</p>
+            </div>
+        </div>
         <span ng-repeat="POI in POI_by_category">
-            <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
-        </span><br>
-        <span ng-repeat="POI in POI_by_category">
-            <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
-        </span><br>
-        <span ng-repeat="POI in POI_by_category">
-            <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>Add review</i></button>
+            <button style="margin-left: 15px;" type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>review</i></button>
             <label ng-show="role=='loggedIn'">Favorite
-                <input type="checkbox" ng-show="role=='loggedIn'" ng-model="POI.favorite" ng-change="change(POI)" style="margin-right: 110px"/>
+                <input type="checkbox" ng-show="role=='loggedIn'" ng-model="POI.favorite" ng-change="change(POI)" style="margin-right: 25px"/>
             </label>
         </span>
     </div>
@@ -50,73 +50,73 @@
             <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span><br>
             <span>Rank:</span><span class="poi_rank" ng-click="open(POI.id)"> {{ POI.rank }} </span><br>
             <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
-            <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>Add review</i></button><br>
+            <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>review</i></button>
             <label ng-show="role=='loggedIn'">Favorite
                 <input type="checkbox" ng-show="role=='loggedIn'" ng-model="POI.favorite" ng-change="change(POI)"/>
-            </label>
+            </label><br>
         </span>
     </div> 
 </div>
-<div class="col-md-8 col-md-offset-3" ng-controller="poiController as poiCtrl" ng-show="poi_page=='poi by categories'">
+<div class="col-md-10 col-md-offset-1"  ng-controller="poiController as poiCtrl" ng-show="poi_page=='poi by categories'">
     <h2>POI</h2>
     <h3>POI By Category:</h3>
-    <div>
-    <h4>Attraction</h4>
-        <span ng-repeat="POI in attractionPOI">
-            <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
-        </span><br>
-        <span ng-repeat="POI in attractionPOI">
-            <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
-        </span><br>
-        <span ng-repeat="POI in attractionPOI">
-            <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>Add review</i></button>
-            <label ng-show="role=='loggedIn'">Favorite
-                <input type="checkbox" ng-show="role=='loggedIn'" ng-model="POI.favorite" ng-change="change(POI)" style="margin-right: 110px"/>
-            </label>
-        </span>
-    </div>  
-    <div>
+    <div class="row">
+        <h4>Attraction</h4>
+        <div class="col-sm-4" class="card" ng-repeat="POI in attractionPOI" style="width: 20%;">
+            <img class="card-img-top" ng-src="{{ POI.pic }}" ng-click="open(POI.id)" style="width:100%">
+            <div class="card-body" style="text-align: center;">
+                <p class="card-title">{{ POI.name }}</p>
+            </div>
+        </div>
+            <span ng-repeat="POI in attractionPOI">
+                <button style="margin-left: 15px;" type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>review</i></button>
+                <label ng-show="role=='loggedIn'">Favorite
+                    <input type="checkbox" ng-show="role=='loggedIn'" ng-model="POI.favorite" ng-change="change(POI)" style="margin-right: 25px;"/>
+                </label>
+            </span>
+        </div><br>  
+    <div class="row">
         <h4>Museum</h4>
+        <div class="col-sm-4" class="card" ng-repeat="POI in museumPOI" style="width: 20%;">
+            <img class="card-img-top" ng-src="{{ POI.pic }}" ng-click="open(POI.id)" style="width:100%">
+            <span class="card-body" style="text-align: center;">
+                <p class="card-title">{{ POI.name }}</p>
+            </span>
+        </div>
         <span ng-repeat="POI in museumPOI">
-            <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
-        </span><br>
-        <span ng-repeat="POI in museumPOI">
-            <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
-        </span><br>
-        <span ng-repeat="POI in museumPOI">
-            <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>Add review</i></button>
+            <button style="margin-left: 15px;" type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>review</i></button>
             <label ng-show="role=='loggedIn'">Favorite
-                <input type="checkbox" ng-show="role=='loggedIn'" ng-model="POI.favorite" ng-change="change(POI)" style="margin-right: 110px"/>
+                <input type="checkbox" ng-show="role=='loggedIn'" ng-model="POI.favorite" ng-change="change(POI)" style="margin-right: 25px"/>
             </label>
         </span>
-    </div>
-    <div>
-        <h4>Resturant</h4>
+    </div><br>
+    <div class="row">
+        <h4>Restaurant</h4>
+        <div class="col-sm-4" class="card" ng-repeat="POI in resturantPOI" style="width: 20%;">
+            <img class="card-img-top" ng-src="{{ POI.pic }}" ng-click="open(POI.id)" style="width:100%">
+            <span class="card-body" style="text-align: center;">
+                <p class="card-title">{{ POI.name }}</p>
+            </span>
+        </div>
         <span ng-repeat="POI in resturantPOI">
-            <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
-        </span><br>
-        <span ng-repeat="POI in resturantPOI">
-            <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
-        </span><br>
-        <span ng-repeat="POI in resturantPOI">
-            <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>Add review</i></button>
+            <button style="margin-left: 15px;" type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>review</i></button>
             <label ng-show="role=='loggedIn'">Favorite
-                <input type="checkbox" ng-show="role=='loggedIn'" ng-model="POI.favorite" ng-change="change(POI)" style="margin-right: 110px"/>
+                <input type="checkbox" ng-show="role=='loggedIn'" ng-model="POI.favorite" ng-change="change(POI)" style="margin-right: 25px"/>
             </label>
         </span>
-    </div>
-    <div>
+    </div><br>
+    <div class="row">
         <h4>Shopping</h4>
+        <div class="col-sm-4" class="card" ng-repeat="POI in shoppingPOI" style="width: 20%;">
+            <img class="card-img-top" ng-src="{{ POI.pic }}" ng-click="open(POI.id)" style="width:100%">
+            <span class="card-body" style="text-align: center;">
+                <p class="card-title">{{ POI.name }}</p>
+            </span>
+        </div>
         <span ng-repeat="POI in shoppingPOI">
-            <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
-        </span><br>
-        <span ng-repeat="POI in shoppingPOI">
-            <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
-        </span><br>
-        <span ng-repeat="POI in shoppingPOI">
-            <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>Add review</i></button>
+            <button style="margin-left: 15px;" type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>review</i></button>
             <label ng-show="role=='loggedIn'">Favorite
-                <input type="checkbox" ng-show="role=='loggedIn'" ng-model="POI.favorite" ng-change="change(POI)" style="margin-right: 110px"/>
+                <input type="checkbox" ng-show="role=='loggedIn'" ng-model="POI.favorite" ng-change="change(POI)" style="margin-right: 25px"/>
             </label>
         </span>
     </div>

@@ -4,9 +4,17 @@ img {
     width: 200px;
 }
 
+h2 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
 span.poi_name {
-    margin-right: 140px;
-    font-size: 150%;
+    margin-right: 6%;
+    font-size: 140%;
 }
 
 span.poi_category {

@@ -4,7 +4,8 @@ angular.module("myApp")
     $scope.submit = function () {
         var restorePass_json = {user_name: $scope.username,
                         question: $scope.question,
-                        answer: $scope.answer, }
+                        answer: $scope.answer }
+        console.log(restorePass_json);
       $http.post('http://localhost:3000/restorePassword', restorePass_json)
       .then(function (response){
          console.log(response.data)

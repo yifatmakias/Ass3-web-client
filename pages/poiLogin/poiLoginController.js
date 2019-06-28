@@ -30,7 +30,7 @@ angular.module("myApp")
       if (Object.keys(POIJsons).length === 0) {
          $scope.no_saved_message = "No saved POI to show"
       }
-      for (var i=0; i<Object.keys(POIJsons).length; i++) {
+      for (var i=Object.keys(POIJsons).length-1; i>Object.keys(POIJsons).length-3; i--) {
          arrPOISaved.push({'id': POIJsons[i].poi_id, 'name': POIJsons[i].poi_name, 'pic': POIJsons[i].poi_pic});
       }
       $scope.savedPOI = arrPOISaved;

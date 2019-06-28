@@ -5,7 +5,7 @@
                 <option value="nofilter">-- No Filter --</option>
                 <option value="shopping">Shopping</option>
                 <option value="museum">Museum</option>
-                <option value="resturant">Resturant</option>
+                <option value="resturant">Restaurant</option>
                 <option value="attraction">Attraction</option>
             </select>
             <button type="button" ng-click="sortByRating()" class="btn btn-primary"><i>Sort by ranking</i></button>
@@ -20,7 +20,7 @@
             <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
         </span><br>
         <span ng-repeat="POI in POI_by_category">
-            <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>Add review</i></button>
+            <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>Review</i></button>
             <button type="button" ng-show="role=='loggedIn'" ng-click="removePoi(POI.id)" class="btn btn-primary" style="margin-right: 22px"><i>Remove</i></button>
 
         </span>
@@ -30,7 +30,7 @@
             <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span><br>
             <span>Rank:</span><span class="poi_rank" ng-click="open(POI.id)"> {{ POI.rank }} </span><br>
             <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
-            <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>Add review</i></button>
+            <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>Review</i></button>
             <button type="button" ng-show="role=='loggedIn'" ng-click="removePoi(POI.id)" class="btn btn-primary"><i>Remove</i></button><br>
 
         </span>
@@ -43,7 +43,7 @@
             <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span><br>
             <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
             <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up" ng-click="up(POI.order_index)"></span></button><br>
-            <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>Add review</i></button>
+            <button type="button" ng-show="role=='loggedIn'" ng-click="addReview(POI.id)" class="btn btn-primary"><i>Review</i></button>
             <button type="button" ng-show="role=='loggedIn'" ng-click="removePoi(POI.id)" class="btn btn-primary"><i>Remove</i></button><br>
         </span><br>
     </div>  

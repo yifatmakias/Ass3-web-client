@@ -1,22 +1,25 @@
-
-<div class="col-md-8 col-md-offset-3" ng-controller="poiLoginController as poiLoginCtrl">
-    <h2>POI For You</h2>
-    <h3>Recomended POI:</h3>
-    <span ng-repeat="POI in recomendedPOI">
-        <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
-    </span><br>
-    <span ng-repeat="POI in recomendedPOI">
-        <span class="poi_name" ng-click="open(POI.id)"> {{ POI.category }} </span>
-    </span><br>
-    <span ng-repeat="POI in recomendedPOI">
-        <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
-    </span>
-    <h3>Favorite POI:</h3>
-    <span ng-bind=no_saved_message></span>
-    <span ng-repeat="POI in savedPOI">
-        <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
-    </span><br>
-    <span ng-repeat="POI in savedPOI">
-        <img ng-src="{{ POI.pic }}" ng-click="open(POI.id)">
-    </span>
+<h2>POI For You</h2>
+<h3>Recomended POI:</h3>
+<div class="col-md-10 col-md-offset-4 col-centered" ng-controller="poiLoginController as poiLoginCtrl">
+    <div class=row>
+        <div class="col-sm-6" class="card" ng-repeat="POI in recomendedPOI" style="width: 22%;">
+            <img class="card-img-top" ng-src="{{ POI.pic }}" ng-click="open(POI.id)" style="width:100%">
+            <div class="card-body" style="text-align: center;">
+                <span class="card-title">name: {{ POI.name }}</span><br>
+                <span class="card-title">category: {{ POI.category }}</span>
+            </div>
+        </div>
+    </div><br>
+</div>
+<h3>Favorite POI:</h3>
+<div class="col-md-10 col-md-offset-4 col-centered" ng-controller="poiLoginController as poiLoginCtrl">
+    <div class=row>
+        <div class="col-sm-6" class="card" ng-repeat="POI in savedPOI" style="width: 22%;">
+            <img class="card-img-top" ng-src="{{ POI.pic }}" ng-click="open(POI.id)" style="width:100%">
+            <div class="card-body" style="text-align: center;">
+                <p class="card-title">{{ POI.name }}</p>
+                <p class="card-title">{{ POI.category }}</p>
+            </div>
+        </div>
+    </div>
 </div>
