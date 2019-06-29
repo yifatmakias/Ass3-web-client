@@ -2,8 +2,34 @@
 angular.module("myApp")
 .controller("poiController", function ($scope, $http, $uibModal, sharedProperties, $rootScope, $window) {
       $scope.favoriteListSize = sharedProperties.getFavoriteArrSize();
-      $scope.$on('change-favoritelist-event', function() {    
+      $scope.$on('change-favoritelist-event', function() {
+         var favoriteArr = sharedProperties.getFavoriteArr();    
          $scope.favoriteListSize = sharedProperties.getFavoriteArrSize();
+         for (var i=0; i<Object.keys($scope.attractionPOI).length;i++){
+            if (favoriteArr.includes($scope.attractionPOI[i].id)) {
+               $scope.attractionPOI[i].favorite = true;
+            }
+         }
+         for (var i=0; i<Object.keys($scope.museumPOI).length;i++){
+            if (favoriteArr.includes($scope.museumPOI[i].id)) {
+               $scope.museumPOI[i].favorite = true;
+            }
+         }
+         for (var i=0; i<Object.keys($scope.resturantPOI).length;i++){
+            if (favoriteArr.includes($scope.resturantPOI[i].id)) {
+               $scope.resturantPOI[i].favorite = true;
+            }
+         }
+         for (var i=0; i<Object.keys($scope.shoppingPOI).length;i++){
+            if (favoriteArr.includes($scope.shoppingPOI[i].id)) {
+               $scope.shoppingPOI[i].favorite = true;
+            }
+         }
+         for (var i=0; i<Object.keys($scope.POI_by_category).length;i++){
+            if (favoriteArr.includes($scope.POI_by_category[i].id)) {
+               $scope.POI_by_category[i].favorite = true;
+            }
+         }
      });
       $scope.role = sharedProperties.getRole();
       $scope.$on('change-role-event', function() {    
