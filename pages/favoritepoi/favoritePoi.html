@@ -1,18 +1,20 @@
-<div class="col-md-12 col-md-offset-3" ng-controller="favoritepoiController as favoritepoiCtrl">
+<div class="col-md-10 col-md-offset-5" ng-controller="favoritepoiController as favoritepoiCtrl">
     <form>
         <div class="form-actions">
             <select name="category" id="category" ng-model="category" ng-change="filter()">
                 <option value="nofilter">-- No Filter --</option>
                 <option value="shopping">Shopping</option>
                 <option value="museum">Museum</option>
-                <option value="resturant">Restaurant</option>
+                <option value="restaurant">Restaurant</option>
                 <option value="attraction">Attraction</option>
             </select>
             <button type="button" ng-click="sortByRating()" class="btn btn-primary"><i>Sort by ranking</i></button>
         </div>
     </form>
     <div ng-show="favorite_poi_page=='favorite poi by category'">
-        <h2>{{ category }}</h2>
+        <h2 style="text-align: left">{{ category }}</h2>
+    </div>
+    <div ng-show="favorite_poi_page=='favorite poi by category'">
         <span ng-repeat="POI in POI_by_category">
             <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span>
         </span><br>
@@ -36,8 +38,10 @@
         </span>
     </div> 
 </div>
-<div class="col-md-8 col-md-offset-3" ng-controller="favoritepoiController as favoritepoiCtrl" ng-show="favorite_poi_page=='favorite poi'">
+<div ng-controller="favoritepoiController as favoritepoiCtrl" ng-show="favorite_poi_page=='favorite poi'">
     <h2>Favorite POI</h2>
+</div>
+<div class="col-md-10 col-md-offset-5" ng-controller="favoritepoiController as favoritepoiCtrl" ng-show="favorite_poi_page=='favorite poi'">
     <div>
         <span ng-repeat="POI in favoritePOI | orderBy:'order_index'">
             <span class="poi_name" ng-click="open(POI.id)"> {{ POI.name }} </span><br>

@@ -49,7 +49,7 @@ angular.module("myApp")
 
    $http({
       method: 'GET',
-      url: 'http://localhost:3000/getPOIByCategory/resturant',
+      url: 'http://localhost:3000/getPOIByCategory/restaurant',
    }).then(function (response){
       var POIJsons = response.data
       for (var i=0; i<Object.keys(POIJsons).length; i++) {
