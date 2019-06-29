@@ -61,12 +61,16 @@ angular.module("myApp")
       var POIJsons = response.data[0];
       var reviewsJsons = response.data[1];
       var arrReviews = new Array();
+      var favoriteArr = sharedProperties.getFavoriteArr();
       for (var i=0; i<Object.keys(POIJsons).length; i++) {
          $scope.name = POIJsons[i].poi_name;
          $scope.category = POIJsons[i].poi_category;
          $scope.desc = POIJsons[i].poi_desc;
          $scope.rank = POIJsons[i].poi_rank/5 * 100;
          $scope.num_of_viewers = POIJsons[i].num_of_viewers;
+         if (favoriteArr.includes(POIJsons[i].poi_id)){
+            $scope.POI.favorite = true;
+          }
       }
       for (var i=0; i<Object.keys(reviewsJsons).length; i++) {
          arrReviews.push({
