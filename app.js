@@ -15,8 +15,7 @@ app.config(function($routeProvider)  {
         // about
         .when('/about', {
             // this is a template url
-            templateUrl: 'pages/about/about.html',
-            controller : 'aboutController as abtCtrl'
+            templateUrl: 'pages/about/about.html'
         })
         .when('/restorePassword', {
             // this is a template url

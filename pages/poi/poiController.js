@@ -220,7 +220,7 @@ angular.module("myApp")
 });
 
 angular.module("myApp")
-.controller('ModalContentCtrl', function($scope, $http, $uibModalInstance, data, sharedProperties) {
+.controller('ModalContentCtrl', function($scope, $http, $uibModalInstance, data, sharedProperties, $rootScope) {
    $scope.role = sharedProperties.getRole();
    $scope.$on('change-role-event', function() {    
       $scope.role = sharedProperties.getRole();
@@ -267,6 +267,7 @@ angular.module("myApp")
         var index = favoriteArray.indexOf(POI.poi_id);
         sharedProperties.removeFavorite(index);
       }
+      $rootScope.$broadcast('change-favoritelist-event');
       console.log(favoriteArray);
    };
  });

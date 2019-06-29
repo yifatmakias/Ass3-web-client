@@ -53,7 +53,7 @@ angular.module("myApp")
 });
 
 angular.module("myApp")
-.controller('ModalContentCtrl', function($scope, $http, $uibModalInstance, data) {
+.controller('ModalContentCtrl', function($scope, $http, $uibModalInstance, data, $rootScope) {
    $http({
       method: 'GET',
       url: 'http://localhost:3000/getPOIDetails/'+ data
@@ -81,6 +81,19 @@ angular.module("myApp")
    },function (error){
       alert(error);
    });
+   $scope.change = function(POI) {
+      var favoriteArray = sharedProperties.getFavoriteArr();
+      if (POI.favorite === true && !favoriteArray.includes(POI.poi_id)){
+        sharedProperties.addFavorite(POI.poi_id);
+      }
+      if (POI.favorite === false && favoriteArray.includes(POI.poi_id)) {
+        var index = favoriteArray.indexOf(POI.poi_id);
+        sharedProperties.removeFavorite(index);
+      }
+      $rootScope.$broadcast('change-favoritelist-event');
+      console.log(favoriteArray);
+   }
+
    $scope.ok = function(){
      $uibModalInstance.close("Ok");
    }
