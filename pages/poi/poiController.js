@@ -9,25 +9,40 @@ angular.module("myApp")
             if (favoriteArr.includes($scope.attractionPOI[i].id)) {
                $scope.attractionPOI[i].favorite = true;
             }
+            else {
+               $scope.attractionPOI[i].favorite = false;
+            }
          }
          for (var i=0; i<Object.keys($scope.museumPOI).length;i++){
             if (favoriteArr.includes($scope.museumPOI[i].id)) {
                $scope.museumPOI[i].favorite = true;
+            }
+            else {
+               $scope.museumPOI[i].favorite = false;
             }
          }
          for (var i=0; i<Object.keys($scope.resturantPOI).length;i++){
             if (favoriteArr.includes($scope.resturantPOI[i].id)) {
                $scope.resturantPOI[i].favorite = true;
             }
+            else {
+               $scope.resturantPOI[i].favorite = false;
+            }
          }
          for (var i=0; i<Object.keys($scope.shoppingPOI).length;i++){
             if (favoriteArr.includes($scope.shoppingPOI[i].id)) {
                $scope.shoppingPOI[i].favorite = true;
             }
+            else {
+               $scope.shoppingPOI[i].favorite = false;
+            }
          }
          for (var i=0; i<Object.keys($scope.POI_by_category).length;i++){
             if (favoriteArr.includes($scope.POI_by_category[i].id)) {
                $scope.POI_by_category[i].favorite = true;
+            }
+            else {
+               $scope.POI_by_category[i].favorite = false;
             }
          }
      });
