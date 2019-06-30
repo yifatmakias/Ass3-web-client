@@ -21,6 +21,7 @@ server side: https://github.com/yifatmakias/Ass3-web.git
 פירוט בנוגע למספר logins של לקוחות רשומים לאתר:
 1.user name- aaa 
 password- aaa00
+עקב בדיקות ולידציה שנדרשו בפרויקט לא ניתן להיכנס עם שם המשתמש a והסיסמא a
 
 2.user name- moran 
 password- moran555
